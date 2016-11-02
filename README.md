@@ -14,3 +14,10 @@ Technlogies Used:
  4. Resharper
  5. Fluent
  6. Newtonsoft.Json
+ 
+ 
+ Specflow was considered to automate the website testing.
+ 
+ But given the acceptance criteria is not in the GHERKIN format, Only browser based testing using plain user story format being used.
+ 
+Ideally, Specflow will be used in AGILE World for automation. 
