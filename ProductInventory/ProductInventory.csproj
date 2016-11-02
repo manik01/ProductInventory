@@ -73,6 +73,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="PageObjects\featuerPage.cs" />
     <Compile Include="Tests\ProductCategoryTest.cs" />
     <Compile Include="PageObjects\ProductPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="SeleniumHelpers\WebDriverExtensions.cs" />
     <Compile Include="Utilities\ConfigurationHelper.cs" />
     <Compile Include="Utilities\Constants.cs" />
+    <Compile Include="Utilities\Extensions.cs" />
     <Compile Include="Utilities\Guard.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 using ProductInventory.PageObjects;
 using ProductInventory.SeleniumHelpers;
 using ProductInventory.Utilities;
-using System.Threading;
+
 
 namespace ProductInventory.Tests
 {
@@ -43,7 +43,7 @@ namespace ProductInventory.Tests
         }
 
         [Test]
-        public void LoginWithValidCredentialsShouldSucceed()
+        public void SubscribeToFutureProductsShouldSucceed()
         {
             // Arrange
             var productPage = new ProductPage(_driver);
@@ -60,6 +60,35 @@ namespace ProductInventory.Tests
                 "Thanks! We will notify you of our new shoes at this email:"
                 , true, CultureInfo.InvariantCulture).Should().BeTrue();
             
+        }
+
+        [Test]
+        public void ShouldAccessUpcomingProductsWithPriceDetails()
+        {
+            // Arrange
+            var productPage = new ProductPage(_driver);
+            FeatuerPage featurePage;
+
+            // Act
+            var monthNames = Extensions.GetAllMonthNames();
+
+            foreach (var month in monthNames)
+            {
+                productPage.AccessProductInfo(_baseUrl, month);
+
+                // Need to wait until the results are displayed on the web page
+                Thread.Sleep(10000);
+
+                featurePage = new FeatuerPage(_driver);
+                var webElements = featurePage.GetAllWebElements();
+
+                //Assert
+                foreach (var property in webElements)
+                {
+                    Assert.IsTrue(!string.IsNullOrEmpty(((IWebElement) property).Text));
+                }
+
+            }
         }
     }
 }

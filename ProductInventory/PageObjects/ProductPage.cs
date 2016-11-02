@@ -1,7 +1,13 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using ProductInventory.SeleniumHelpers;
 using ProductInventory.Utilities;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace ProductInventory.PageObjects
 {
@@ -24,17 +30,9 @@ namespace ProductInventory.PageObjects
         [FindsBy(How = How.ClassName, Using = "flash flash_success")]
         public IWebElement SuccessMessageField { get; set; }
 
-        
-
-        /// <summary>
-        /// JQuery selector example
-        /// </summary>
-        public IWebElement LoginButton {
-            get
-            {
-                return _driver.FindElementByJQuery("input[name='btnSubmit']");
-            }
-        }
+        [FindsBy(How = How.ClassName, Using = "flash flash_success")]
+        public IWebElement FeatureMonth { get; set; }
+ 
 
         public void SubscribeToProducts(string baseUrl)
         {
@@ -46,6 +44,15 @@ namespace ProductInventory.PageObjects
 
             SubscribeButton.Click();
           
+        }
+
+        public void AccessProductInfo(string baseUrl, string month )
+        {
+
+            _driver.Navigate().GoToUrl(baseUrl);
+            _driver.Navigate().GoToUrl(String.Format("{0}{1}/{2}",baseUrl,Constants.Month,month));
+
+            
         }
     }
 }

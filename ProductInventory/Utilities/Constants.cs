@@ -9,5 +9,7 @@ namespace ProductInventory.Utilities
     public static class Constants
     {
         public static readonly string UserEmail = "test@test.com";
+        public static readonly string Month = "months";
+
     }
 }
