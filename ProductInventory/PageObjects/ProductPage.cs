@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using ProductInventory.SeleniumHelpers;
+using ProductInventory.Utilities;
 
 namespace ProductInventory.PageObjects
 {
@@ -14,14 +15,16 @@ namespace ProductInventory.PageObjects
             PageFactory.InitElements(_driver, this);
         }
 
-        [FindsBy(How = How.Id, Using = "_ctl0__ctl0_LoginLink")]
-        public IWebElement SignInLink { get; set; }
+        [FindsBy(How = How.Id, Using = "remind_email_input")]
+        public IWebElement SubscribeLink { get; set; }
 
-        [FindsBy(How = How.Id, Using = "uid")]
-        public IWebElement UserIdField { get; set; }
+        [FindsBy(How = How.Id, Using = "remind_email_submit")]
+        public IWebElement SubscribeButton { get; set; }
 
-        [FindsBy(How = How.Id, Using = "passw")]
-        public IWebElement PasswordField { get; set; }
+        [FindsBy(How = How.ClassName, Using = "flash flash_success")]
+        public IWebElement SuccessMessageField { get; set; }
+
+        
 
         /// <summary>
         /// JQuery selector example
@@ -33,18 +36,16 @@ namespace ProductInventory.PageObjects
             }
         }
 
-        public void LoginAsAdmin(string baseUrl)
+        public void SubscribeToProducts(string baseUrl)
         {
             _driver.Navigate().GoToUrl(baseUrl);
-            SignInLink.Click();
-            UserIdField.Clear();
+
+            SubscribeLink.Clear();
             // sending a single quote is not possible with the Chrome Driver, it sends two single quotes!
-            UserIdField.SendKeys("admin'--");
+            SubscribeLink.SendKeys(Constants.UserEmail);
 
-            PasswordField.Clear();
-            PasswordField.SendKeys("blah");
-
-            LoginButton.Click();
+            SubscribeButton.Click();
+          
         }
     }
 }

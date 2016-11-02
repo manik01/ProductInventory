@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 using ProductInventory.PageObjects;
 using ProductInventory.SeleniumHelpers;
 using ProductInventory.Utilities;
-using ProductInventory.PageObjects;
+using System.Threading;
 
 namespace ProductInventory.Tests
 {
@@ -49,13 +49,18 @@ namespace ProductInventory.Tests
             var productPage = new ProductPage(_driver);
 
             // Act
+            productPage.SubscribeToProducts(_baseUrl);
+
+            // Need to wait until the results are displayed on the web page
             
+            Thread.Sleep(10000);
 
             // Assert
+            productPage.SuccessMessageField.Text.StartsWith(
+                "Thanks! We will notify you of our new shoes at this email:"
+                , true, CultureInfo.InvariantCulture).Should().BeTrue();
             
         }
-
-  
     }
 }
 

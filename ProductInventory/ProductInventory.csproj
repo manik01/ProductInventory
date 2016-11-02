@@ -82,6 +82,7 @@
     <Compile Include="SeleniumHelpers\SeleniumUtils.cs" />
     <Compile Include="SeleniumHelpers\WebDriverExtensions.cs" />
     <Compile Include="Utilities\ConfigurationHelper.cs" />
+    <Compile Include="Utilities\Constants.cs" />
     <Compile Include="Utilities\Guard.cs" />
   </ItemGroup>
   <ItemGroup>
